@@ -1,19 +1,22 @@
+import 'package:dynamic_todo_list/views/create_todo_view.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:dynamic_todo_list/utils/theme.dart';
 
 // fungsi wajib di flutter
 void main() {
-  runApp(const TodoListWidget());
+  runApp(const HomeView());
 }
 
-class TodoListWidget extends StatefulWidget {
-  const TodoListWidget({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
-  _TodoListWidgetState createState() => _TodoListWidgetState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
 // state class
-class _TodoListWidgetState extends State<TodoListWidget> {
+class _HomeViewState extends State<HomeView> {
   List<String> _todo = [];
 
   void _addTodo() {
@@ -49,6 +52,17 @@ class _TodoListWidgetState extends State<TodoListWidget> {
       // Scaffold disini juga merupakan komponen dari material design (UI Kit)
       home: Scaffold(
         appBar: AppBar(title: const Text("myTodo"),),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return const CreateTodoView();
+                }
+            ))
+          }
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
